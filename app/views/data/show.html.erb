@@ -1,0 +1,26 @@
+<div id="main">
+	<div id="header">
+		<h1>DATA VISUALIZATION PROTOTYPE</h1>
+	</div>
+	<div id="viz-table">
+		<table border="0">
+			<thead>
+				<tr>
+					<th>Time</th>
+					<th>Data</th>
+				</tr>
+			<thead>
+			<tbody>
+				<% @records.each do |record| %>
+					<tr>
+						<td class="viz-time"><%= record.time %></td>
+						<td class="viz-data"><%= record.data %></td>
+					</tr>
+				<% end %>								
+			</tbody>
+		</table>
+	</div>
+	
+	<div id="viz-chart"></div>	
+</div>
+

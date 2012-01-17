@@ -1,4 +1,8 @@
 Grapher::Application.routes.draw do
+  get "data/show"
+
+  post "data/new"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

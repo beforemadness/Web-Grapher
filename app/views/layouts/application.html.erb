@@ -1,10 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Grapher</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
+  <title>Tester</title>
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" %>
+  <%= javascript_include_tag "https://www.google.com/jsapi" %>
   <%= csrf_meta_tags %>
+	<style type="text/css" media="screen">
+		#main {
+			margin:auto;
+			width:900px;
+			
+		}
+		
+		table {
+			width:100%;
+		}
+		
+		thead {
+			text-align: left;
+			
+		}
+		
+		thead tr {
+			background-color: #DDD;
+		}
+		tbody {
+			
+		}
+		
+		#viz-chart {
+			border: 1px solid #999;
+			width:50%;
+			float:left;
+		}
+		
+		#viz-table {
+			float:left;
+			width:40%;
+		}
+		
+	</style>
+	<script type="text/javascript" charset="utf-8">
+		google.load('visualization', '1.0', {'packages':['corechart']});
+		$(document).ready(function(){
+			google.setOnLoadCallback(prepareChart);
+		});
+		
+		var prepareChart = function() {
+			var gdata = new google.visualization.DataTable();
+			gdata.addColumn('date',"Time");
+			gdata.addColumn('number',"Data");
+			
+			
+			var time = new Array();
+			var data = new Array();
+			$(".viz-time").each(function() {
+				
+				time.push($(this).html())
+			});
+			$(".viz-data").each(function() {
+				data.push($(this).html())
+			});
+			
+			for(var i = 0;i<data.length;i++) {
+				console.log(time[i] + " : " + data[i]);
+				var d = new Date(parseInt(time[i])*1000);
+				console.log(d);
+				gdata.addRow([d,parseInt(data[i])]);
+			}
+			var options = {
+	          width: 350, height: 300,
+	          title: 'Company Performance'
+	        };
+
+	        var chart = new google.visualization.LineChart(document.getElementById('viz-chart'));
+	        chart.draw(gdata, options);	
+			
+		}
+	</script>
 </head>
 <body>
 
