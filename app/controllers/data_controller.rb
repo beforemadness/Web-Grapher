@@ -1,3 +1,5 @@
+
+
 class DataController < ApplicationController
   def new
     @error = false
@@ -7,7 +9,7 @@ class DataController < ApplicationController
       
       table = TimeData.new
       table.data = @data
-      table.time = @time
+      table.time = @time.to_i
       table.save
           
     else
